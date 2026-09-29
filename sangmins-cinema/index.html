@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sangmin's Cinema — Personal Movie Curator</title>
+<meta name="description" content="취향 기반 개인 영화 큐레이터. 영화 취향을 분석하고 오늘 볼 영화를 추천합니다." />
+<meta name="theme-color" content="#06060a" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <button class="brand" data-nav="home">
+    <span class="brand-mark">◉</span>
+    <span class="brand-text">SANGMIN'S CINEMA</span>
+  </button>
+  <nav class="nav">
+    <button class="nav-btn is-active" data-nav="home">홈</button>
+    <button class="nav-btn" data-nav="profile">취향 프로필</button>
+    <button class="nav-btn" data-nav="list">내 영화 목록</button>
+    <button class="nav-btn" data-nav="ratings">평가 기록</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HOME ================= -->
+  <section class="view is-active" id="view-home">
+    <div class="hero">
+      <p class="hero-kicker">Personal Movie Curator</p>
+      <h1 class="hero-title">SANGMIN'S CINEMA</h1>
+      <p class="hero-sub">"Find a movie that feels like it was made for you."</p>
+      <button class="cta" id="btn-tonight">
+        <span class="cta-dot"></span>
+        WHAT SHOULD I WATCH TONIGHT?
+      </button>
+      <p class="hero-hint">취향 데이터 <b>·</b> 평가 기록 <b>·</b> 추천 이력이 모두 반영됩니다</p>
+      <div class="hero-meta" id="hero-meta"></div>
+    </div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2>My Movie DNA</h2>
+        <button class="link-btn" data-nav="profile">전체 프로필 보기 →</button>
+      </div>
+      <p class="block-note">현재 입력된 영화 데이터를 기반으로 한 추정치입니다. 막대는 “좋아하는 영화에서만 뚜렷하게 높은 정도(취향 신호 강도)”를 나타냅니다.</p>
+      <div class="dna-grid" id="dna-grid"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2>My Favorites</h2>
+        <button class="link-btn" data-nav="list">전체 목록 →</button>
+      </div>
+      <div class="rail" id="rail-favorites"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2>Recently Recommended</h2>
+        <span class="pill" id="rec-count">0편</span>
+      </div>
+      <div class="rec-list" id="recent-list"></div>
+    </section>
+  </section>
+
+  <!-- ================= PROFILE ================= -->
+  <section class="view" id="view-profile">
+    <div class="page-head">
+      <h1>영화 취향 프로필</h1>
+      <p class="page-sub">좋아하는 영화 · 좋아하진 않지만 명작이라 생각하는 영화 · 별로였던 영화를 12개 취향 축과 6개 회피 축으로 분석한 결과입니다.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h2 class="panel-title">Taste Profile <span class="panel-tag">취향 신호 강도 · 추정치</span></h2>
+        <div class="bars" id="profile-bars"></div>
+        <p class="disclaimer" id="profile-disclaimer"></p>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">Avoid Signals <span class="panel-tag warn">회피 성향</span></h2>
+        <div class="bars bars-warn" id="avoid-bars"></div>
+        <p class="disclaimer">별로였던 영화에서 추출한 신호입니다. 이 항목이 높은 영화는 추천 점수가 깎입니다.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">취향을 만든 영화들 <span class="panel-tag">가중치</span></h2>
+      <div class="weight-legend">
+        <span class="wchip w-fav">⭐ Favorites +1.35</span>
+        <span class="wchip w-loved">❤️ Loved +1.00</span>
+        <span class="wchip w-craft">🏆 명작 인정 · 애정 없음 +0.30 (연출·완성도 축에만 반영)</span>
+        <span class="wchip w-mcraft">🤔 명작 인정 · 취향 아님 −0.45</span>
+        <span class="wchip w-dis">👎 별로 −1.00</span>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl" id="tbl-contrib"></table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">분석 요약</h2>
+      <div class="summary" id="profile-summary"></div>
+    </div>
+  </section>
+
+  <!-- ================= LIST ================= -->
+  <section class="view" id="view-list">
+    <div class="page-head">
+      <h1>내 영화 목록</h1>
+      <p class="page-sub">내가 본 영화와 평가한 추천 영화를 한 곳에서 봅니다. 추천 후보는 예상 적합도 배지와 함께 표시됩니다.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <input class="search" id="search" type="search" placeholder="제목 · 감독 · 장르 검색" />
+    </div>
+    <p class="block-note" id="list-count-note"></p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- ================= RATINGS ================= -->
+  <section class="view" id="view-ratings">
+    <div class="page-head">
+      <h1>평가 기록</h1>
+      <p class="page-sub">추천받은 영화를 본 뒤 남긴 평가입니다. 이 기록이 다음 추천의 점수를 조정합니다.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h2 class="panel-title">반응 요약</h2>
+        <div class="bars" id="rating-bars"></div>
+        <p class="disclaimer">저장된 평가가 없으면 이 영역은 0으로 표시됩니다. 추천 카드나 영화 상세에서 바로 평가할 수 있습니다.</p>
+      </div>
+      <div class="panel">
+        <h2 class="panel-title">요소별 평가 평균</h2>
+        <div class="bars" id="dim-bars"></div>
+        <p class="disclaimer">Story · Characters · World-building · Visuals · Music · Emotional impact · Pacing · Originality</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">기록된 평가</h2>
+      <div class="rec-list" id="ratings-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">데이터 관리 <span class="panel-tag">JSON</span></h2>
+      <p class="disclaimer" style="margin-top:0">평가 데이터는 이 브라우저에만 저장됩니다. JSON으로 내보내면 나중에 서버·DB로 그대로 옮길 수 있습니다.</p>
+      <div class="act-row" style="margin-top:14px">
+        <button class="btn-solid" id="btn-export">평가 데이터 내보내기</button>
+        <button class="btn-ghost" id="btn-import">JSON 불러오기</button>
+        <button class="btn-ghost" id="btn-reset">전체 초기화</button>
+        <input type="file" id="import-file" accept="application/json" hidden />
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Sangmin's Cinema · 개인용 영화 큐레이터 · 데이터는 브라우저(localStorage)에만 저장됩니다.</p>
+  <p class="foot-dim">추천 점수는 태그 벡터 기반 weighted scoring의 추정치이며, 영화의 실제 품질에 대한 평가가 아닙니다.</p>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <button class="modal-close" data-close="1" aria-label="닫기">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data/taxonomy.js"></script>
+<script src="data/movies.js"></script>
+<script src="data/ratings.js"></script>
+<script src="engine/scoring.js"></script>
+<script src="app/store.js"></script>
+<script src="app/ui.js"></script>
+<script>window.CinemaUI.init();</script>
+</body>
+</html>
