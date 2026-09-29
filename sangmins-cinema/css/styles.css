@@ -198,6 +198,10 @@ a{color:inherit;text-decoration:none}
     0 22px 45px rgba(0,0,0,.55),
     0 0 24px rgba(240,163,58,.12);
 }
+.mcard:hover .poster{
+  filter:brightness(1.1);
+  box-shadow:inset 0 0 35px rgba(240,163,58,.18);
+}
 .poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:#0d0d16}
 .poster img{width:100%;height:100%;object-fit:cover}
 .poster-gen{
