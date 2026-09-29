@@ -2,24 +2,32 @@
    Sangmin's Cinema — cinematic dark theme
    =========================================================== */
 :root{
-  --bg:#06060a;
-  --bg-2:#0b0b12;
+  --bg:#050507;
+  --bg-2:#0b0b0d;
+
   --panel:rgba(255,255,255,.035);
   --panel-2:rgba(255,255,255,.06);
+
   --line:rgba(255,255,255,.10);
   --line-strong:rgba(255,255,255,.18);
-  --txt:#f2f0ec;
-  --txt-dim:#a7a5b0;
-  --txt-faint:#75737f;
-  --gold:#e9c47c;
-  --gold-2:#c8963f;
-  --red:#e2566b;
-  --teal:#63d3c8;
-  --violet:#8f7bff;
-  --ok:#7fd39a;
+
+  --txt:#f5eee4;
+  --txt-dim:#aaa39a;
+  --txt-faint:#706b66;
+
+  --gold:#f0a33a;
+  --gold-2:#c87824;
+
+  --red:#c6424d;
+  --teal:#63a88a;
+  --violet:#75639d;
+
+  --ok:#79b88d;
+
   --radius:18px;
   --radius-sm:12px;
   --shadow:0 24px 60px rgba(0,0,0,.55);
+
   --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
           "Segoe UI", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
   --display: "Bebas Neue", "Helvetica Neue", Impact, "Arial Narrow", var(--font);
