@@ -54,10 +54,21 @@ a{color:inherit;text-decoration:none}
 .bg-glow{
   position:fixed;inset:-20% -10% auto -10%;height:130vh;z-index:-2;
   background:
-    radial-gradient(60% 45% at 18% 8%, rgba(233,196,124,.16), transparent 60%),
-    radial-gradient(55% 40% at 82% 0%, rgba(143,123,255,.18), transparent 62%),
-    radial-gradient(70% 50% at 50% 55%, rgba(99,211,200,.07), transparent 65%),
-    linear-gradient(180deg,#0a0a12 0%, #06060a 55%, #06060a 100%);
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(240,163,58,.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(99,168,138,.06),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(198,66,77,.05),
+      transparent 35%
+    );
   filter:saturate(1.05);
 }
 .grain{
